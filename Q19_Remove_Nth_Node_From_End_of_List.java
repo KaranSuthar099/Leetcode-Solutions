@@ -1,5 +1,5 @@
 public class Q19_Remove_Nth_Node_From_End_of_List {
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 

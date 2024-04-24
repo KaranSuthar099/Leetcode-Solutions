@@ -1,5 +1,5 @@
 public class Q83_Remove_Duplicates_from_Sorted_List {
-    public class ListNode {
+    private class ListNode {
         int val;
         ListNode next;
 

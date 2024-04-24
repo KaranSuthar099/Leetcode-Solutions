@@ -1,6 +1,6 @@
 public class Q24_Swap_Nodes_in_Pairs {
     //  Definition for singly-linked list.
-    public static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 

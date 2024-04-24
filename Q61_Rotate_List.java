@@ -1,5 +1,5 @@
 public class Q61_Rotate_List {
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 
@@ -16,7 +16,7 @@ public class Q61_Rotate_List {
         }
     }
 
-    public static class LinkedList {
+    private static class LinkedList {
         ListNode head;
 
         // Constructor

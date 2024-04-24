@@ -1,5 +1,5 @@
 public class Q82_Remove_Duplicates_from_Sorted_List_II {
-    static class ListNode {
+    private static class ListNode {
         int val;
         ListNode next;
 
@@ -16,7 +16,7 @@ public class Q82_Remove_Duplicates_from_Sorted_List_II {
         }
     }
 
-    public static class LinkedList {
+    private static class LinkedList {
         ListNode head;
 
         // Constructor
