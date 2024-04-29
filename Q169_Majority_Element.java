@@ -3,24 +3,20 @@ import java.util.HashMap;
 public class Q169_Majority_Element {
 
     public int majorityElement(int[] nums) {
-        if (nums.length == 1)
-            return nums[0];
-        HashMap<Integer, Integer> numberFrequency = new HashMap<>();
-        int threshold = nums.length / 2;
-        for (int i : nums) {
-            if (numberFrequency.containsKey(i)) {
-                int frequency = numberFrequency.get(i);
+        // boyer moore voting algorithm
+        int count = 0;
+        int element = -1;
 
-                if (frequency + 1 > threshold)
-                    return i;
-
-                numberFrequency.put(i, frequency + 1);
-                continue;
+        for (int i =0; i<nums.length; i++){
+            // if count is zero then take up the current element
+            if (count == 0){
+                element = nums[i];
+                count ++;
             }
-            numberFrequency.put(i, 1);
+            else if (nums[i] == element) count++;
+            else count--;
         }
-
-        return -1;
+        return element;
 
     }
 
