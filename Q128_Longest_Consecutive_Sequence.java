@@ -26,6 +26,30 @@ public class Q128_Longest_Consecutive_Sequence {
 
 //    public static int longestConsecutive(int[] nums) {
 //        //return the length of longest consecutive array
+//        Set<Integer> setNum = new HashSet<>();
+//        for (int i : nums) {
+//            setNum.add(i);
+//        }
+//
+//        int longestSequence = 0;
+//        int currentSequence = 1;
+//        for (int number: setNum){
+//            if (!setNum.contains(number-1)){
+//                currentSequence = 1;
+//                while(setNum.contains(number+1)){
+//                    currentSequence++;
+//                    number++;
+//                }
+//                if(currentSequence>longestSequence) longestSequence = currentSequence;
+//            }
+//
+//        }
+//
+//        return longestSequence;
+//    }
+
+//    public static int longestConsecutive(int[] nums) {
+//        //return the length of longest consecutive array
 //        Arrays.sort(nums);
 //
 //        Set<Integer> setChar = new HashSet<>();
