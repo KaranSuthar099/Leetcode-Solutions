@@ -1,14 +1,32 @@
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class Q1_Two_Sum {
 
-    public int[] twoSum(int[] nums, int target) {
-        for (int i=1;i<nums.length;i++){
-            for(int j=i;j<nums.length;j++){
-                if(nums[j-i] + nums[j]==target){
-                    return new int[]{j-i,j};
+    public static int[] twoSum(int[] nums, int target) {
+        HashSet<Integer> numberSet = new HashSet<>();
+        for (int i : nums) {
+            numberSet.add(i);
+        }
+        int[] indexArray = new int[2];
+        for (int i : numberSet) {
+            if (numberSet.contains(target - i)) {
+                int index = 0;
+                for (int j = 0; j < nums.length; j++){
+                    if ( nums[j] == i || nums[j] == target-i ) {
+                        indexArray[index++] = j;
+                    }
                 }
+
             }
         }
-        return new int[]{};
+
+        return indexArray;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {2,7,11,15};
+        System.out.println(Arrays.toString(twoSum(array, 9)));
     }
 
 }
