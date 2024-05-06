@@ -4,7 +4,6 @@ public class Q443_String_Compression {
         char character = chars[0];
         int frequency = 0;
         int index = 0;
-        String[] str = new String[50];
 
         for (char i : chars) {
             // either the character can be equal to i or be different form it
