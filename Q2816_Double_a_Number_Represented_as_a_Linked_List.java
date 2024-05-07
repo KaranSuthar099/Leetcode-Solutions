@@ -1,41 +1,51 @@
-public class Q2487_Remove_Nodes_From_Linked_List {
-
-    public ListNode removeNodes(ListNode head) {
-        // reversing the list
+public class Q2816_Double_a_Number_Represented_as_a_Linked_List {
+    public ListNode doubleIt(ListNode head) {
+        // reading the number while reversing it
         ListNode current = head.next;
         ListNode prev = head;
+        ListNode next;
         prev.next = null;
-        while (current != null) {
-            ListNode next = current.next;
+
+        while(current != null){
+            next = current.next;
             current.next = prev;
             prev = current;
             current = next;
         }
         head = prev;
 
-
-        current = head;
-        int prevGreatest = current.val;
-        while (current.next != null) {
-            if (current.next.val < prevGreatest)
-                current.next = current.next.next;
-            else {
-                prevGreatest = current.next.val;
-                current = current.next;
-            }
-        }
-
-        // reversing the list again
+        // now reversing while multiplying by 2
         current = head.next;
         prev = head;
         prev.next = null;
-        while (current != null) {
-            ListNode next = current.next;
+
+        // lets say digit is 5
+        // if doubled it will become 10
+        // we have ot store 0 in node and add 1 to carry
+        // and next time doubling the digtit lets say
+        int carry = 0 ;
+        prev.val = prev.val * 2 + carry;
+        carry = prev.val / 10 ;
+        prev.val = prev.val % 10;
+
+        while ( current != null){
+            next = current.next;
             current.next = prev;
             prev = current;
-            current = next;
+            current = next ;
+
+            // doubling the digit
+            prev.val = prev.val * 2 + carry;
+            carry = prev.val / 10 ;
+            prev.val = prev.val % 10;
         }
         head = prev;
+        // there can be a trailing carry;
+        if (carry != 0){
+            ListNode trail = new ListNode(carry);
+            trail.next = head;
+            head = trail;
+        }
         return head;
     }
 
@@ -78,5 +88,4 @@ public class Q2487_Remove_Nodes_From_Linked_List {
             }
         }
     }
-
 }
