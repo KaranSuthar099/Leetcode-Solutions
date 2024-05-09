@@ -12,43 +12,36 @@ public class Q6_Zigzag_Conversion {
     public static String convert(String s, int numRows) {
         if (numRows == 1) return s;
 
-        int index = 0;
-        int iterator = 0;
+        int stringIterator = 0;
+        int arrayIterator = 0;
         int sLength = s.length();
-        ArrayList<char[]> retArray = new ArrayList<>();
-        while (iterator == 0 || iterator == numRows) {
-            if (iterator == 0) {
-                char[] element = new char[numRows];
-                while (iterator < numRows && index < sLength) {
-                    element[iterator++] = s.charAt(index++);
-                }
-                retArray.addLast(element);
-            } else if (iterator == numRows) {
-                iterator -= 2;
-                while (iterator > 0 && index < sLength) {
-                    char[] element = new char[numRows];
-                    element[iterator] = s.charAt(index++);
-                    retArray.addLast(element);
-                    iterator--;
-                }
-                if (index == sLength) break;
 
+        int[] indexString = new int[numRows];
+        LinkedList<Character> retList = new LinkedList<>();
+        while (stringIterator != s.length()) {
+            if (arrayIterator == 0) {
+                while (arrayIterator < numRows && stringIterator < sLength) {
+                    retList.add(indexString[arrayIterator], s.charAt(stringIterator++));
+                    for ( int i = arrayIterator; i<indexString.length; i++){
+                        indexString[i]++;
+                    }
+                    arrayIterator++;
+                }
+            } else if (arrayIterator == numRows) {
+                arrayIterator -= 2;
+                while (arrayIterator > 0 && stringIterator < sLength) {
+                    retList.add(indexString[arrayIterator], s.charAt(stringIterator++));
+                    for ( int i = arrayIterator; i<indexString.length; i++){
+                        indexString[i]++;
+                    }
+                    arrayIterator--;
+                }
             }
         }
 
         StringBuilder retString = new StringBuilder();
-        int rsLength = 0;
-        index = 0;
-
-        while (rsLength != sLength) {
-            for (int i = 0; i < retArray.size(); i++){
-                char c = retArray.get(i)[index];
-                if((int) c >0) {
-                    retString.append(c);
-                    rsLength++;
-                }
-            }
-            index++;
+        for ( char c: retList){
+            retString.append(c);
         }
 
         return retString.toString();
