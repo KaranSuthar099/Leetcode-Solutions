@@ -12,36 +12,34 @@ public class Q6_Zigzag_Conversion {
     public static String convert(String s, int numRows) {
         if (numRows == 1) return s;
 
-        int stringIterator = 0;
-        int arrayIterator = 0;
+        int index = 0;
+        int iterator = 0;
         int sLength = s.length();
 
         int[] indexString = new int[numRows];
-        LinkedList<Character> retList = new LinkedList<>();
-        while (stringIterator != s.length()) {
-            if (arrayIterator == 0) {
-                while (arrayIterator < numRows && stringIterator < sLength) {
-                    retList.add(indexString[arrayIterator], s.charAt(stringIterator++));
-                    for ( int i = arrayIterator; i<indexString.length; i++){
-                        indexString[i]++;
-                    }
-                    arrayIterator++;
-                }
-            } else if (arrayIterator == numRows) {
-                arrayIterator -= 2;
-                while (arrayIterator > 0 && stringIterator < sLength) {
-                    retList.add(indexString[arrayIterator], s.charAt(stringIterator++));
-                    for ( int i = arrayIterator; i<indexString.length; i++){
-                        indexString[i]++;
-                    }
-                    arrayIterator--;
-                }
-            }
-        }
-
         StringBuilder retString = new StringBuilder();
-        for ( char c: retList){
-            retString.append(c);
+
+        while (iterator == 0 || iterator == numRows) {
+            if (iterator == 0) {
+                while (iterator < numRows && index < sLength) {
+                    retString.insert(indexString[iterator], s.charAt(index++));
+                    for ( int i = iterator; i<indexString.length; i++){
+                        indexString[i]++;
+                    }
+                    iterator++;
+                }
+            } else if (iterator == numRows) {
+                iterator -= 2;
+                while (iterator > 0 && index < sLength) {
+                    retString.insert(indexString[iterator], s.charAt(index++));
+                    for ( int i = iterator; i<indexString.length; i++){
+                        indexString[i]++;
+                    }
+                    iterator--;
+                }
+                if (index == sLength) break;
+
+            }
         }
 
         return retString.toString();
