@@ -1,24 +1,25 @@
-import java.util.HashMap;
-
 public class Q13_Roman_to_Integer {
     public static void main(String[] args) {
-        System.out.println("roman number MMMCMXCIX int integer is " + romanToInt("MMMCMXCIX") );
+        System.out.println("roman number MMMCMXCIX int integer is " + romanToInt("MMMCMXCIX"));
+    }
+
+    public static int romanCharToInt(char roman) {
+        if (roman == 'I') return 1;
+        else if (roman == 'V') return 5;
+        else if (roman == 'X') return 10;
+        else if (roman == 'L') return 50;
+        else if (roman == 'C') return 100;
+        else if (roman == 'D') return 500;
+        else return 1000;
+
     }
 
     public static int romanToInt(String s) {
-        HashMap<Character, Integer> romanNumber = new HashMap<>();
-        romanNumber.put('I', 1);
-        romanNumber.put('V', 5);
-        romanNumber.put('X', 10);
-        romanNumber.put('L', 50);
-        romanNumber.put('C', 100);
-        romanNumber.put('D', 500);
-        romanNumber.put('M', 1000);
 
-        int integer = romanNumber.get(s.charAt(0));
+        int integer = romanCharToInt(s.charAt(0));
         for (int i = 1; i < s.length(); i++) {
-            int prev = romanNumber.get(s.charAt(i - 1));
-            int current = romanNumber.get(s.charAt(i));
+            int prev = romanCharToInt(s.charAt(i - 1));
+            int current = romanCharToInt(s.charAt(i));
             if (current <= prev) {
                 integer += current;
             } else {
