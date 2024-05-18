@@ -1,11 +1,22 @@
 public class Q1342_Number_of_Steps_to_Reduce_a_Number_to_Zero {
-    public static int numberOfSteps(int num) {
-        // using recursion
-        if (num == 1) return 1;
-        if (num == 0) return 0;
+    public static void main(String[] args) {
+        System.out.println(numberOfSteps(8));
+    }
 
-        if (num%2==0) return 1+numberOfSteps(num/2);
-        return 1+numberOfSteps(num-1);
+    public static int numberOfSteps(int num) {
+        // using loop
+        int count = 0;
+        while (num != 1 && num != 0){
+            if (num%2 == 0) {
+                num/=2;
+            }else {
+                num -= 1;
+            }
+            count++;
+        }
+
+        if (num == 1) return ++count;
+        return count;
 
     }
 }
