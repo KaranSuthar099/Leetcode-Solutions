@@ -1,27 +1,25 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class Q1_Two_Sum {
 
     public static int[] twoSum(int[] nums, int target) {
-        HashSet<Integer> numberSet = new HashSet<>();
-        for (int i : nums) {
-            numberSet.add(i);
-        }
-        int[] indexArray = new int[2];
-        for (int i : numberSet) {
-            if (numberSet.contains(target - i)) {
-                int index = 0;
-                for (int j = 0; j < nums.length; j++){
-                    if ( nums[j] == i || nums[j] == target-i ) {
-                        indexArray[index++] = j;
-                    }
-                }
+        HashMap<Integer, Integer> numberSet = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) numberSet.put(nums[i], i);
 
+        for (int i = 0; i < nums.length; i++) {
+            // if we select element at i index then target - i must be present in the array
+            int remainingSum = target - nums[i];
+
+            // if remaining part is present in the array
+            if (numberSet.containsKey(remainingSum)) {
+                // if it is not the duplicate of the same then return
+                int index = numberSet.get(remainingSum);
+                if (index != i) return new int[]{i, index};
             }
         }
-
-        return indexArray;
+        return new int[]{-1, -1};
     }
 
     public static void main(String[] args) {
