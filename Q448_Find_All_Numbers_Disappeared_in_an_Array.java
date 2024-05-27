@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Q448_Find_All_Numbers_Disappeared_in_an_Array {
@@ -10,24 +11,16 @@ public class Q448_Find_All_Numbers_Disappeared_in_an_Array {
     }
 
     public static List<Integer> findDisappearedNumbers(int[] nums) {
-        // cyclic sort
-        int i = 0;
-        while (i < nums.length) {
-            // if the element is at correct index of we are having cycle
-            // continue to the next iteration
-            if (nums[i] - 1 == i || nums[i] == nums[nums[i] - 1]) i++;
-            else {
-                // swap the elements
-                int container = nums[i];
-                nums[i] = nums[container - 1];
-                nums[container - 1] = container;
-            }
+        // using hashSet
+
+        HashSet<Integer> set = new HashSet<>();
+        for (int i: nums){
+            set.add(i);
         }
 
-        // now preparing the return list
         ArrayList<Integer> retList = new ArrayList<>();
-        for (i = 0; i < nums.length; i++) {
-            if (nums[i] -1 != i) retList.add(i+1);
+        for (int i = 1; i<=nums.length; i++){
+            if (!set.contains(i)) retList.add(i);
         }
 
         return retList;
