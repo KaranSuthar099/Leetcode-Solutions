@@ -11,19 +11,17 @@ public class Q448_Find_All_Numbers_Disappeared_in_an_Array {
     }
 
     public static List<Integer> findDisappearedNumbers(int[] nums) {
-        // using hashSet
-
-        HashSet<Integer> set = new HashSet<>();
-        for (int i: nums){
-            set.add(i);
+        // using boolean array
+        boolean[] mapArray = new boolean[nums.length];
+        for (int i : nums){
+            mapArray[i-1] = true;
+        }
+        ArrayList<Integer> retArray = new ArrayList<>();
+        for (int i = 0; i< mapArray.length; i++){
+            if (!mapArray[i]) retArray.add(i+1);
         }
 
-        ArrayList<Integer> retList = new ArrayList<>();
-        for (int i = 1; i<=nums.length; i++){
-            if (!set.contains(i)) retList.add(i);
-        }
-
-        return retList;
+        return retArray;
     }
 
 
