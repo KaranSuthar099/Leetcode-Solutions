@@ -6,19 +6,14 @@ public class Q287_Find_the_Duplicate_Number {
     }
 
     public static int findDuplicate(int[] nums) {
-        // using cyclic sort
-//       0, 1, 2, 3, 4, 5, 6, 7, 8,
-//      {3, 1, 3, 4, 2}
-        int i = 0;
-        while (i < nums.length) {
-            if (nums[i] - 1 == i) i++;
-            else if (nums[nums[i] - 1] == nums[i]) return nums[i];
+        // using boolean array
+        int[] array = new int[nums.length];
+        for (int num : nums) {
+            array[num - 1]++;
+        }
 
-            if (nums[i] - 1 != i) {
-                int container = nums[nums[i] - 1];
-                nums[nums[i] - 1] = nums[i];
-                nums[i] = container;
-            }
+        for (int i = 0; i<array.length; i++){
+            if (array[i] > 1) return i+1;
         }
         return -1;
     }
