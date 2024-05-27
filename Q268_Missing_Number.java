@@ -1,25 +1,27 @@
-import java.util.HashSet;
-
 public class Q268_Missing_Number {
 
     public static void main(String[] args) {
-        int[] nums = {3,0,1};
+        //            0, 1, 2, 3, 4, 5, 6, 7, 8,
+        int[] nums = {9, 1, 4, 2, 3, 6, 7, 0, 8};
         System.out.println(missingNumber(nums));
 
     }
 
     public static int missingNumber(int[] nums) {
-        // using hashSet
-        HashSet<Integer> set = new HashSet<>();
-        for (int i: nums){
-            set.add(i);
+        // using cyclic sort
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != nums.length) {
+                while (nums[i] != i && nums[i] != nums.length) {
+                    int container = nums[i];
+                    nums[i] = nums[nums[i]];
+                    nums[container] = container;
+                }
+            }
         }
-        int element;
-        for (element = 0; element<nums.length; element++){
-            if (!set.contains(element)) break;
+        for (int i = 0; i<nums.length; i++){
+            if (i != nums[i]) return i;
         }
-
-        return element;
+        return -1;
     }
 
 }
