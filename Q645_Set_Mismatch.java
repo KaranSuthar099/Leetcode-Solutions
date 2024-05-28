@@ -11,24 +11,18 @@ public class Q645_Set_Mismatch {
     }
 
     public static int[] findErrorNums(int[] nums) {
-        // using cycle sort
-        int i = 0;
-        while (i < nums.length) {
-            if (nums[i] - 1 == i || nums[i] == nums[nums[i] - 1]) i++;
-            else {
-                // else swap
-                int container = nums[i];
-                nums[i] = nums[nums[i] - 1];
-                nums[container - 1] = container;
-            }
+        // using boolean array
+        boolean[] map = new boolean[nums.length];
+        int repeatingElement = -1;
+        for (int i: nums){
+            if (!map[i - 1]) map[i-1] = true;
+            else repeatingElement = i;
         }
 
-        for (i = 0; i < nums.length; i++) {
-            if (nums[i] != i+1)
-                return new int[] {nums[i], i+1};
+        for (int i = 0; i<map.length; i++){
+            if (!map[i]) return new int[]{repeatingElement, i+1};
         }
-
-        return new int[]{-1, -1,};
+        return new int[]{-1, -1};
     }
 
 }
