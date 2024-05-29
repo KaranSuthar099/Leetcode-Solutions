@@ -1,33 +1,29 @@
-import java.util.Arrays;
-
 public class Q41_First_Missing_Positive {
     public static void main(String[] args) {
-        int[] nums = {2, 1};
+        int[] nums = {0, 1, 2};
         System.out.println(firstMissingPositive(nums));
     }
 
     public static int firstMissingPositive(int[] nums) {
-        // with zero based indexing
+        // with one based indexing
         int i = 0;
         while (i < nums.length) {
-            if (nums[i] == i || nums[i] < 0 || nums[i] >= nums.length) i++;
-            else if (nums[i] == nums[nums[i]]) i++;
+            // skip the elemets which are at correct index or
+            // less than or equals to  0 and greater than or equals to the length of array
+            if (nums[i] - 1 == i || nums[i] - 1 < 0 || nums[i] - 1 >= nums.length) i++;
+                // skip the element which cant be placed at the correct index
+            else if (nums[i] == nums[nums[i] - 1]) i++;
             else {
-                // swap with correct index
+                // else swap with correct index
                 int container = nums[i];
-                nums[i] = nums[nums[i]];
-                nums[container] = container;
+                nums[i] = nums[nums[i] - 1];
+                nums[container - 1] = container;
             }
         }
-        System.out.println(Arrays.toString(nums));
 
         int missingPositive = 1;
-
         for (i = 0; i < nums.length; i++) {
-            if (nums[i] == missingPositive ) missingPositive++;
-        }
-        for (i = nums.length -1; i >= 0 ; i--) {
-            if (nums[i] == missingPositive ) missingPositive++;
+            if (nums[i] == missingPositive) missingPositive++;
         }
         return missingPositive;
     }
