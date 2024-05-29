@@ -19,18 +19,13 @@ public class Q147_Insertion_Sort_List {
     public static ListNode insertionSortList(ListNode head) {
         // loop than picks up the elements
 
-        while (true) {
-            ListNode iterator = head;
-            boolean isListSorted = true;
-            while (iterator.next != null){
-                if (iterator.next.val < iterator.val){
-                    isListSorted = false;
-                    break;
-                }
+        ListNode iterator = head;
+        while (iterator.next != null) {
+            if (iterator.val < iterator.next.val) {
                 iterator = iterator.next;
+                continue;
             }
 
-            if (isListSorted) break;
             // make a copy of element
             ListNode element = iterator.next;
 
