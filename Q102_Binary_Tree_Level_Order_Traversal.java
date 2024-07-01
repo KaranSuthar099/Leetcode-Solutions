@@ -28,7 +28,7 @@ public class Q102_Binary_Tree_Level_Order_Traversal {
         lvlOrder(root.left, lvl, level + 1);
     }
 
-    public class TreeNode {
+    private class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
